@@ -6,7 +6,7 @@ public class BlackJack {
     userInput UI = new userInput();
     Boolean playAgain = true;
     private Player[] players;
-    int playerNo;
+    int playerNo = 0;
 
     //initialize players and add them to player array
     public void createPlayers() {
@@ -26,21 +26,11 @@ public class BlackJack {
     }
 
     public void startGame() {
-        createPlayers();
         //create and shuffle deck
         pack.create();
         pack.shuffle();
-        //receive players bets
-        for (Player p : players) {
-            //UI.getBet(p);
-            p.placeBet(200);
-        }
-        //deal initial hands
+        //initieal deal to players
         dealer.initialDeal(pack, players);
-        /* dealer.printInfo();
-           for (Player p : players) {
-             p.printInfo();
-        } */ 
     }
 
     public void playRound() {

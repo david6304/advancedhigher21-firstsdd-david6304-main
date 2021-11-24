@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Player {
     private ArrayList<Card> hand = new ArrayList<Card>();
     private long money;
-    private int bet;
+    private int bet = 0;
     private String name;
     //second hand in case player can split hands
     //private ArrayList<Card> splitHand = new ArrayList<Card>();

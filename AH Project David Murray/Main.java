@@ -2,7 +2,9 @@ public class Main {
     public static void main(String[] args) {
         BlackJack game = new BlackJack();
         UserInputGUI uiGUI = new UserInputGUI(game);
-        GUI gameGUI = new GUI(game);
+        if (uiGUI.isVisible() == false) {
+            GUI gameGUI = new GUI(game);
+        }
         
 
         /* BlackJack game = new BlackJack();

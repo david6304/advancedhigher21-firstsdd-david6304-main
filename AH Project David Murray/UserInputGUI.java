@@ -19,8 +19,16 @@ public class UserInputGUI extends javax.swing.JFrame {
     public UserInputGUI(BlackJack game) {
         initComponents(game);
         setVisible(true);
-        setNoPlayers(game);
-        placePlayerBets(game);
+        while(game.playerNo < 1 || game.playerNo > 6) {
+            setNoPlayers(game);
+        }
+        while(game.getPlayersArray()[game.playerNo-1] == null) {
+            setPlayerNames(game);
+        }
+        while(game.getPlayersArray()[game.playerNo-1].getBet() == 0) {
+            placePlayerBets(game);
+        }
+        game.startGame();
         setVisible(false);
     }
 
@@ -84,16 +92,18 @@ public class UserInputGUI extends javax.swing.JFrame {
         game.createPlayerArray(game.playerNo);
         for (int i = 0; i < game.playerNo; i++) {
             PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: ");
-            EnterButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    game.getPlayersArray()[i] = new Player(PlayerInputTextField.getText(), 500);
-                }
-            });
-            EnterButton.removeActionListener();
-            
-        }
-        
+            setName(i, game, PlayerInputTextField.getText());
+        } 
+    }
+
+    //
+    public void setName(int i, BlackJack game, String name) {
+        EnterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.getPlayersArray()[i] = new Player(name, 500);
+            }
+        });
     }
 
     //get each players bet
