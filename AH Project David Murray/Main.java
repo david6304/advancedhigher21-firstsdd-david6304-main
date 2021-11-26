@@ -5,7 +5,7 @@ public class Main {
         if (uiGUI.isVisible() == false) {
             GUI gameGUI = new GUI(game);
         }
-        
+        //GUI gui = new GUI(game);
 
         /* BlackJack game = new BlackJack();
         while (game.playAgain) {

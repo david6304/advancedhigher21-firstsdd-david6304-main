@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  *
  * @author David
  */
-public class UserInputGUI extends javax.swing.JFrame {
+public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form UserInputGUI
@@ -19,18 +19,21 @@ public class UserInputGUI extends javax.swing.JFrame {
     public UserInputGUI(BlackJack game) {
         initComponents(game);
         setVisible(true);
-        while(game.playerNo < 1 || game.playerNo > 6) {
-            setNoPlayers(game);
-        }
-        while(game.getPlayersArray()[game.playerNo-1] == null) {
-            setPlayerNames(game);
-        }
-        while(game.getPlayersArray()[game.playerNo-1].getBet() == 0) {
-            placePlayerBets(game);
-        }
+        setNoPlayers(game);
+        setPlayerNames(game);
+        placePlayerBets(game);
         game.startGame();
         setVisible(false);
     }
+    
+    String input = "0";
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        input = PlayerInputTextField.getText();
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +47,7 @@ public class UserInputGUI extends javax.swing.JFrame {
         PlayerInputLabel = new javax.swing.JLabel();
         PlayerInputTextField = new javax.swing.JTextField();
         EnterButton = new javax.swing.JButton();
+        EnterButton.addActionListener(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         EnterButton.setText("Enter");
@@ -77,47 +81,51 @@ public class UserInputGUI extends javax.swing.JFrame {
     }// </editor-fold>
 
     //get number of players
-    public void setNoPlayers(BlackJack game) {
-        PlayerInputLabel.setText("Welcome to BlackJack, how many players are playing: (1-6)");
-        EnterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.playerNo = Integer.parseInt(PlayerInputTextField.getText());
-            }
-        });
+    public void setNoPlayers(BlackJack game) { 
+        PlayerInputLabel.setText("Welcome to BlackJack, how many players are playing: (1-6)"); 
+        while (game.playerNo < 1 || game.playerNo > 6) {
+            game.playerNo = Integer.parseInt(input);
+        }  
+        input = "0";
+        game.createPlayerArray(game.playerNo);
     }
 
     //get each players name
     public void setPlayerNames(BlackJack game) {
-        game.createPlayerArray(game.playerNo);
         for (int i = 0; i < game.playerNo; i++) {
-            PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: ");
-            setName(i, game, PlayerInputTextField.getText());
+                PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: ");
+                if (!input.equals("0")) {
+                    setName(i, game, input);
+                }  
         } 
     }
 
-    //
+    //used in setPlayerNames
     public void setName(int i, BlackJack game, String name) {
-        EnterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.getPlayersArray()[i] = new Player(name, 500);
-            }
-        });
+        while (game.getPlayersArray()[i] == null || input.equals("0")) {
+            game.getPlayersArray()[i] = new Player(name, 500);
+        }
+        input = "0";
     }
 
     //get each players bet
     public void placePlayerBets(BlackJack game) {
         for (Player p : game.getPlayersArray()) {
-            PlayerInputLabel.setText(p.getName() + " enter your bet: (1-500)");
-            EnterButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    p.placeBet(Integer.parseInt(PlayerInputTextField.getText()));
-                }
-            });
+            while (p.getBet() < 1 || p.getBet() > p.getMoney()) {
+                PlayerInputLabel.setText(p.getName() + " enter your bet: (1-500)");
+                p.placeBet(Integer.parseInt(input));
+            }
+            
         }
     }
+
+    /* public void removeActionListeners(javax.swing.JButton button) {
+        System.out.println("Removing action listener...");
+        for (ActionListener al : button.getActionListeners()) {
+            button.removeActionListener(al);
+        }
+        System.out.println("Removed action listener");
+    }  */
 
     // Variables declaration - do not modify
     private javax.swing.JButton EnterButton;
