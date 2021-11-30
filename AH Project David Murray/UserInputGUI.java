@@ -27,10 +27,14 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     }
     
     String input = "0";
+    boolean buttonPressed = false;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         input = PlayerInputTextField.getText();
+        System.out.println("button pressed");
+        buttonPressed = true;
+        System.out.println(buttonPressed);
 
     }
 
@@ -80,23 +84,36 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
         pack();
     }// </editor-fold>
 
+    //get new input
+    public void newInput() {
+        while (true) {
+            //System.out.println(buttonPressed);
+            if (buttonPressed) {
+                System.out.println("button pressed inside function");
+                break;
+            }
+        }
+        buttonPressed = false;
+    }
+
     //get number of players
     public void setNoPlayers(BlackJack game) { 
         PlayerInputLabel.setText("Welcome to BlackJack, how many players are playing: (1-6)"); 
         while (game.playerNo < 1 || game.playerNo > 6) {
             game.playerNo = Integer.parseInt(input);
         }  
-        input = "0";
         game.createPlayerArray(game.playerNo);
+        buttonPressed = false;
     }
 
     //get each players name
     public void setPlayerNames(BlackJack game) {
         for (int i = 0; i < game.playerNo; i++) {
                 PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: ");
-                if (!input.equals("0")) {
-                    setName(i, game, input);
-                }  
+                System.out.println("before new input");
+                newInput();
+                System.out.println("after new input");
+                setName(i, game, input);
         } 
     }
 
@@ -105,7 +122,6 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
         while (game.getPlayersArray()[i] == null || input.equals("0")) {
             game.getPlayersArray()[i] = new Player(name, 500);
         }
-        input = "0";
     }
 
     //get each players bet
