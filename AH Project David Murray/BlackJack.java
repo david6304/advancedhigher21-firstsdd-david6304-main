@@ -8,19 +8,6 @@ public class BlackJack {
     private Player[] players;
     int playerNo = 0;
 
-    //initialize players and add them to player array
-    public void createPlayers() {
-        //int noOfPlayers = UI.getNoPlayers();
-        //int noOfPlayers = 1; //while testing GUI
-        this.players = new Player[this.playerNo];
-        for (int i = 0; i < this.playerNo; i++) {
-            //System.out.println("What is Player " + Integer.toString(i+1) + "'s name: ");
-            //String currName = UI.getPlayerName();
-            String currName = "David";
-            this.players[i] = new Player(currName, 500);
-        }
-    }
-
     public void createPlayerArray(int size) {
         this.players = new Player[size]; 
     }

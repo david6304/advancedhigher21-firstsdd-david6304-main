@@ -5,15 +5,15 @@ public class Dealer {
     private ArrayList<Card> hand = new ArrayList<Card>();
 
     public void initialDeal(Deck d, Player[] pArr) {
-        int counter = 0;
-        while (counter < pArr.length*2) {
+        for (int i = 0; i < 2; i++) {
             this.addToHand(d.cards.get(0));
             d.cards.remove(0);
             for (Player p : pArr) {
                 p.addToHand(d.cards.get(0));
                 d.cards.remove(0);
-                counter++;
+                p.printInfo();
             }
+            this.printInfo();
         }
     } 
 

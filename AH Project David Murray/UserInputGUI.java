@@ -15,8 +15,9 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form UserInputGUI
+     * @throws InterruptedException
      */
-    public UserInputGUI(BlackJack game) {
+    public UserInputGUI(BlackJack game) throws InterruptedException {
         initComponents(game);
         setVisible(true);
         setNoPlayers(game);
@@ -85,9 +86,10 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>
 
     //get new input
-    public void newInput() {
+    public void newInput() throws InterruptedException {
         while (true) {
             //System.out.println(buttonPressed);
+            Thread.sleep(100);
             if (buttonPressed) {
                 System.out.println("button pressed inside function");
                 break;
@@ -97,17 +99,17 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     }
 
     //get number of players
-    public void setNoPlayers(BlackJack game) { 
+    public void setNoPlayers(BlackJack game) throws InterruptedException { 
         PlayerInputLabel.setText("Welcome to BlackJack, how many players are playing: (1-6)"); 
+        newInput();
         while (game.playerNo < 1 || game.playerNo > 6) {
             game.playerNo = Integer.parseInt(input);
         }  
         game.createPlayerArray(game.playerNo);
-        buttonPressed = false;
     }
 
     //get each players name
-    public void setPlayerNames(BlackJack game) {
+    public void setPlayerNames(BlackJack game) throws InterruptedException {
         for (int i = 0; i < game.playerNo; i++) {
                 PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: ");
                 System.out.println("before new input");
@@ -119,16 +121,17 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
     //used in setPlayerNames
     public void setName(int i, BlackJack game, String name) {
-        while (game.getPlayersArray()[i] == null || input.equals("0")) {
+        while (game.getPlayersArray()[i] == null) {
             game.getPlayersArray()[i] = new Player(name, 500);
         }
     }
 
     //get each players bet
-    public void placePlayerBets(BlackJack game) {
+    public void placePlayerBets(BlackJack game) throws InterruptedException {
         for (Player p : game.getPlayersArray()) {
             while (p.getBet() < 1 || p.getBet() > p.getMoney()) {
                 PlayerInputLabel.setText(p.getName() + " enter your bet: (1-500)");
+                newInput();
                 p.placeBet(Integer.parseInt(input));
             }
             

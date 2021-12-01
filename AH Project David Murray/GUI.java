@@ -1,4 +1,7 @@
-public class GUI extends javax.swing.JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class GUI extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form GUI
@@ -14,8 +17,12 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    public void actionPerformed(ActionEvent e) {
+        
+    }
+
     public void initialDealFrame(BlackJack game) throws InterruptedException {
-        game.startGame();
+        game.getPlayersArray()[0].printHand();
         Thread.sleep(500);
         DealerCardImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(0).toString() + ".png")));
         Thread.sleep(500);
@@ -30,7 +37,10 @@ public class GUI extends javax.swing.JFrame {
         PlayerMoneyLabelValue.setText(Long.toString(game.getPlayersArray()[0].getMoney()));
         PlayerBetLabelValue.setText(Long.toString(game.getPlayersArray()[0].getBet()));
         PlayerHandValueLabel.setText(Integer.toString(game.getPlayersArray()[0].handValue()));
+    }
 
+    public void playRoundsFrame(BlackJack game) throws InterruptedException {
+        HitButton.addActionListener();
     }
 
     /**
@@ -42,7 +52,6 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         HitButton = new javax.swing.JButton();
         StandButton = new javax.swing.JButton();
         PlayerNameLabel = new javax.swing.JLabel();
@@ -65,16 +74,9 @@ public class GUI extends javax.swing.JFrame {
         PlayerBetLabelValue = new javax.swing.JLabel();
         PlayerHandValueLabel = new javax.swing.JLabel();
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/c10c.png"))); // NOI18N
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         HitButton.setText("Hit");
-        HitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HitButtonActionPerformed(evt);
-            }
-        });
 
         StandButton.setText("Stand");
 
@@ -192,11 +194,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void HitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                           
+    }// </editor-fold>                                            
    
 
     // Variables declaration - do not modify                     
@@ -220,7 +218,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel PlayerNameLabel;
     private javax.swing.JLabel PlayerNameLabelValue;
     private javax.swing.JButton StandButton;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel PlayerHandValueLabel;
     // End of variables declaration                   
 }
