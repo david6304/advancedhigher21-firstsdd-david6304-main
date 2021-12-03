@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.awt.Color;
 
-/**
- *
- * @author David
- */
 public class OutcomeGUI extends javax.swing.JFrame {
 
     /**
@@ -15,12 +7,11 @@ public class OutcomeGUI extends javax.swing.JFrame {
      * @throws InterruptedException
      */
     public OutcomeGUI(BlackJack game) throws InterruptedException {
-        setVisible(true);
         initComponents(game);
+        setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         displayOutcomes(game);
         game.clearHandsBets();
-        
     }
 
     public boolean playAgainCheck() throws InterruptedException {
@@ -37,6 +28,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
         }   
         return playAgain;
     }
+
 
     public void displayOutcomes(BlackJack game) {
         javax.swing.JLabel[][] labelArr = {
@@ -68,7 +60,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents(BlackJack game) {
-
+        getContentPane().setBackground(Color.decode("#2e6716"));
         playAgainButton = new myJButton();
         dealerHandLabel = new javax.swing.JLabel();
         dealerHandValueLabel = new javax.swing.JLabel();

@@ -18,6 +18,12 @@ public class BlackJack {
         dealer.initialDeal(pack, players);
     }
 
+    //store player data in database
+    public void storePlayerData() {
+        dbMethods db = new dbMethods();
+        
+    }
+
 
     //calculate the outcome of the round and settle the bets
     public void findOutcome() {
