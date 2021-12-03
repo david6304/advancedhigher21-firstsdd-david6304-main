@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class GUI extends javax.swing.JFrame {
 
@@ -21,11 +22,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void initialDealFrame(BlackJack game) throws InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(200);
         DealerCardImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(0).toString() + ".png")));
-        Thread.sleep(500);
+        Thread.sleep(200);
         DealerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/red.png")));
-        Thread.sleep(500);
+        Thread.sleep(200);
         DealerHandValueLabel.setText("?");
     }
 
@@ -33,14 +34,14 @@ public class GUI extends javax.swing.JFrame {
         HitButton.addActionListener(HitButton);
         StandButton.addActionListener(StandButton);
         for (Player p : game.getPlayersArray()) {
-            PlayerCardImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(0).toString() + ".png")));
-            Thread.sleep(500);
-            PlayerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(1).toString() + ".png")));
-            Thread.sleep(500);
             PlayerCardImg1.setIcon(null);
             Thread.sleep(100);
             PlayerCardImg4.setIcon(null);
             Thread.sleep(100);
+            PlayerCardImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(0).toString() + ".png")));
+            Thread.sleep(200);
+            PlayerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(1).toString() + ".png")));
+            Thread.sleep(200);
             PlayerNameLabelValue.setText(p.getName());
             PlayerMoneyLabelValue.setText(Long.toString(p.getMoney()));
             PlayerBetLabelValue.setText(Long.toString(p.getBet()));
@@ -48,7 +49,6 @@ public class GUI extends javax.swing.JFrame {
             while (!StandButton.isPressed() && p.getHand().size() < 4 && !p.isBust()) {
                 Thread.sleep(100);
                 if (HitButton.isPressed() && p.getHand().size() == 2) {
-                    System.out.println("hit once");
                     game.dealer.Deal(game.pack, p);
                     PlayerCardImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(2).toString() + ".png")));
                     PlayerHandValueLabel.setText(Integer.toString(p.handValue()));
@@ -58,7 +58,6 @@ public class GUI extends javax.swing.JFrame {
                     }
                 }
                 else if (HitButton.isPressed() && p.getHand().size() == 3) {
-                    System.out.println("hit twice");
                     game.dealer.Deal(game.pack, p);
                     PlayerCardImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(3).toString() + ".png")));
                     PlayerHandValueLabel.setText(Integer.toString(p.handValue()));
@@ -68,26 +67,17 @@ public class GUI extends javax.swing.JFrame {
                     }
                 }
             }
-            if (p.isBust()) {
-                System.out.println(p.getName() + " is bust!");
-            }
-            else if (p.getHand().size() > 3) {
-                System.out.println(p.getName() + " has the maximum number of cards");
-            }
-            else {
-                System.out.println(p.getName() + " chose to stand");
-            }
             StandButton.setPressedFalse();
-            Thread.sleep(500);
+            Thread.sleep(200);
         }
     }    
 
     public void DealerPlays(BlackJack game) throws InterruptedException {
         DealerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(1).toString() + ".png")));
-        Thread.sleep(1000);
+        Thread.sleep(500);
         DealerHandValueLabel.setText(Integer.toString(game.dealer.handValue()));
         while (game.dealer.handValue() < 17 && game.dealer.getHand().size() < 4 && !game.dealer.isBust()) {
-            Thread.sleep(1000);
+            Thread.sleep(300);
             if (game.dealer.getHand().size() == 2) {
                 game.dealer.DealtoSelf(game.pack, game.dealer);
                 DealerCardImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(2).toString() + ".png")));
@@ -115,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+        getContentPane().setBackground(Color.decode("#2e6716"));
         HitButton = new myJButton();
         StandButton = new myJButton();
         PlayerNameLabel = new javax.swing.JLabel();

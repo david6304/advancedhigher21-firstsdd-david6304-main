@@ -1,16 +1,12 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author David
- */
 public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
     /**
@@ -34,7 +30,6 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         input = PlayerInputTextField.getText();
         buttonPressed = true;
-
     }
 
 
@@ -46,7 +41,7 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents(BlackJack game) {
-
+        getContentPane().setBackground(Color.decode("#2e6716"));
         PlayerInputLabel = new javax.swing.JLabel();
         PlayerInputTextField = new javax.swing.JTextField();
         EnterButton = new javax.swing.JButton();
@@ -112,6 +107,7 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
     //get each players name
     public void setPlayerNames(BlackJack game) throws InterruptedException {
+        dbMethods db = new dbMethods();
         for (int i = 0; i < game.playerNo; i++) {
                 PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: (8 char max)");
                 newInput();
@@ -129,7 +125,15 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
                         System.out.println(doubleNameCheck);
                     }
                 }  
-                setName(i, game, input);
+                //check if player name exists in database
+                if (db.getExistingPlayer(input) != 0) {
+                    existingPlayer(i, game, input, db.getExistingPlayer(input));
+                }
+                //otherwise create a new player and add them to database
+                else {
+                    newPlayer(i, game, input);
+                    db.addPlayer(input);
+                }
         } 
     }
 
@@ -142,8 +146,14 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
         return false;
     }
 
-    //used in setPlayerNames
-    public void setName(int i, BlackJack game, String name) {
+    //creates a player that has played before with their money
+    public void existingPlayer(int i, BlackJack game, String name, int money) {
+        while (game.getPlayersArray()[i] == null) {
+            game.getPlayersArray()[i] = new Player(name, money);
+        }
+    }
+    //creates a new player
+    public void newPlayer(int i, BlackJack game, String name) {
         while (game.getPlayersArray()[i] == null) {
             game.getPlayersArray()[i] = new Player(name, 500);
         }
