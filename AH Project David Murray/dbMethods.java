@@ -15,9 +15,6 @@ public class dbMethods {
             Connection conn = DriverManager.getConnection(database, user, pass);
             stmt = conn.createStatement();
             System.out.println("I am connected");
-            if(stmt != null){
-                stmt.close();
-            }
         }
         catch ( SQLException err ) {
             System.out.println("ERROR" +  err.getMessage( ) );
@@ -43,7 +40,7 @@ public class dbMethods {
     }
 
     public void addPlayer(String name) {
-        String query = "INSERT INTO Players (Username, Money) VALUES ('" + name + "', 500)";
+        String query = "INSERT INTO Players (Username, Money) VALUES ('"+name+"', 500)";
         try {
             stmt.executeQuery(query);
         }
@@ -52,7 +49,24 @@ public class dbMethods {
         }
     }
 
-    public void updatePlayerData(String name, int money){
-        
+    public void updatePlayerData(String name, int money) {
+        String query = "UPDATE Players SET Money = " + money + " WHERE Username = " + name;
+        try {
+            stmt.executeQuery(query);
+        }
+        catch (SQLException err) {
+            System.out.println("ERROR" + err.getMessage());
+        }
+    }
+
+    public void closeStmt() {
+        if (stmt!=null) {
+            try {
+                stmt.close();
+            } 
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

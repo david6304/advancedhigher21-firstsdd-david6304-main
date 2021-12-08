@@ -19,9 +19,10 @@ public class BlackJack {
     }
 
     //store player data in database
-    public void storePlayerData() {
+    public void storePlayerData(String name, int money) {
         dbMethods db = new dbMethods();
-        
+        db.updatePlayerData(name, money);
+        db.closeStmt();
     }
 
 

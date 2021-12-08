@@ -109,32 +109,33 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     public void setPlayerNames(BlackJack game) throws InterruptedException {
         dbMethods db = new dbMethods();
         for (int i = 0; i < game.playerNo; i++) {
-                PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: (8 char max)");
+            PlayerInputLabel.setText("Enter Player " + (i+1) + "'s name: (8 char max)");
+            newInput();
+            boolean doubleNameCheck = false;
+            if (i > 0) {
+                System.out.println("Checking name duplicates");
+                doubleNameCheck = checkDuplicateNames(game);
+                System.out.println(doubleNameCheck);
+            }
+            while (input.length() < 1 || input.length() > 8 || doubleNameCheck) {
                 newInput();
-                boolean doubleNameCheck = false;
                 if (i > 0) {
                     System.out.println("Checking name duplicates");
                     doubleNameCheck = checkDuplicateNames(game);
                     System.out.println(doubleNameCheck);
                 }
-                while (input.length() < 1 || input.length() > 8 || doubleNameCheck) {
-                    newInput();
-                    if (i > 0) {
-                        System.out.println("Checking name duplicates");
-                        doubleNameCheck = checkDuplicateNames(game);
-                        System.out.println(doubleNameCheck);
-                    }
-                }  
-                //check if player name exists in database
-                if (db.getExistingPlayer(input) != 0) {
-                    existingPlayer(i, game, input, db.getExistingPlayer(input));
-                }
-                //otherwise create a new player and add them to database
-                else {
-                    newPlayer(i, game, input);
-                    db.addPlayer(input);
-                }
+            }  
+            //check if player name exists in database
+            if (db.getExistingPlayer(input) != 0) {
+                existingPlayer(i, game, input, db.getExistingPlayer(input));
+            }
+            //otherwise create a new player and add them to database
+            else {
+                newPlayer(i, game, input);
+                db.addPlayer(input);
+            }
         } 
+        db.closeStmt();
     }
 
     public boolean checkDuplicateNames(BlackJack game) {
