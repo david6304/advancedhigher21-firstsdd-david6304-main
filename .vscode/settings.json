@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "AH Project David Murray/mariadb-java-client-2.6.2.jar"
+    ]
+}

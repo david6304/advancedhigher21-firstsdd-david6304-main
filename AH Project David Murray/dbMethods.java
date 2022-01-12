@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class dbMethods {
-    String database = "http://192.168.1.3:8080/phpmyadmin/db_structure.php?server=1&db=dmurray_blackjack_players";
-    String user = "dmurray";
+    String database = "jdbc:mariadb://192.168.1.3:3306/dmurray_blackjack_players";
+    String user = "murrayd";
     String pass = "100528231";
     Statement stmt = null;
     
@@ -17,12 +17,12 @@ public class dbMethods {
             System.out.println("I am connected");
         }
         catch ( SQLException err ) {
-            System.out.println("ERROR" +  err.getMessage( ) );
+            System.out.println("ERROR: " +  err.getMessage( ) );
         }
     }
 
     public int getExistingPlayer(String name) {
-        String query = "SELECT name, money FROM Players";
+        String query = "SELECT Username, Money FROM users";
         try {
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
@@ -40,7 +40,7 @@ public class dbMethods {
     }
 
     public void addPlayer(String name) {
-        String query = "INSERT INTO Players (Username, Money) VALUES ('"+name+"', 500)";
+        String query = "INSERT INTO users (Username, Money) VALUES ('"+name+"', 500)";
         try {
             stmt.executeQuery(query);
         }
@@ -50,7 +50,17 @@ public class dbMethods {
     }
 
     public void updatePlayerData(String name, int money) {
-        String query = "UPDATE Players SET Money = " + money + " WHERE Username = " + name;
+        String query = "UPDATE users SET Money = " + money + " WHERE Username = \"" + name + "\"";
+        try {
+            stmt.executeQuery(query);
+        }
+        catch (SQLException err) {
+            System.out.println("ERROR" + err.getMessage());
+        }
+    }
+
+    public void updateBrokePlayers() {
+        String query = "UPDATE users SET Money = 100 WHERE Money = 0";
         try {
             stmt.executeQuery(query);
         }

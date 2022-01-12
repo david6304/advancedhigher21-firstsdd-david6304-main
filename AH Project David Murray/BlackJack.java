@@ -25,6 +25,22 @@ public class BlackJack {
         db.closeStmt();
     }
 
+    //update money to 100 for any players with 0
+    public void brokePlayers() {
+        for (Player p : players) {
+            if (p.getMoney() == 0) {
+                p.setMoney(100);
+            } 
+        }
+    }
+
+    public void fixBrokePlayers() {
+        brokePlayers();
+        dbMethods db = new dbMethods();
+        db.updateBrokePlayers();
+        db.closeStmt();
+    }
+
 
     //calculate the outcome of the round and settle the bets
     public void findOutcome() {
@@ -58,6 +74,8 @@ public class BlackJack {
             else {
                 p.setDraw(true);
             }
+            storePlayerData(p.getName(), (int)p.getMoney());
+            fixBrokePlayers();
         }
     }
 
