@@ -7,7 +7,6 @@ public class myJButton extends JButton implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         this.pressed = true;
-        System.out.println("Button pressed");
     }
 
     public void setPressedFalse() {

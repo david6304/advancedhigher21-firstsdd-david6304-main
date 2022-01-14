@@ -14,7 +14,6 @@ public class dbMethods {
         try {
             Connection conn = DriverManager.getConnection(database, user, pass);
             stmt = conn.createStatement();
-            System.out.println("I am connected");
         }
         catch ( SQLException err ) {
             System.out.println("ERROR: " +  err.getMessage( ) );

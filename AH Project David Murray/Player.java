@@ -96,14 +96,6 @@ public class Player {
         return this.bet;
     }
 
-    public void printInfo() {
-        System.out.println(this.name + " info: ");
-        System.out.println("    Hand: " + printHand());
-        System.out.println("    Hand value: " + Integer.toString(handValue()));
-        System.out.println("    Money: " + Long.toString(money));
-        System.out.println("    Bet: " + Integer.toString(this.bet));
-    }
-
     //check if player is bust
     public boolean checkBust() {
         if (this.handValue() > 21) {

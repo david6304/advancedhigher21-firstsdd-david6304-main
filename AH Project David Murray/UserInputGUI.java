@@ -1,11 +1,6 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
 
@@ -81,8 +76,6 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     //get new input
     public void newInput() throws InterruptedException {
         while (true) {
-            //System.out.println("inside newInput()");
-            //System.out.println(":)");
             Thread.sleep(100);
             if (buttonPressed) {
                 break;
@@ -113,16 +106,12 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
             newInput();
             boolean doubleNameCheck = false;
             if (i > 0) {
-                System.out.println("Checking name duplicates");
                 doubleNameCheck = checkDuplicateNames(game);
-                System.out.println(doubleNameCheck);
             }
             while (input.length() < 1 || input.length() > 8 || doubleNameCheck) {
                 newInput();
                 if (i > 0) {
-                    System.out.println("Checking name duplicates");
                     doubleNameCheck = checkDuplicateNames(game);
-                    System.out.println(doubleNameCheck);
                 }
             }  
             //check if player name exists in database

@@ -12,9 +12,7 @@ public class Dealer {
             for (Player p : pArr) {
                 p.addToHand(d.cards.get(0));
                 d.cards.remove(0);
-                p.printInfo();
             }
-            this.printInfo();
         }
     } 
 
@@ -41,12 +39,6 @@ public class Dealer {
     
     public String printHand() {
         return Arrays.toString(this.hand.toArray());
-    }
-
-    public void printInfo() {
-        System.out.println("Dealer info: ");
-        System.out.println("    Hand: " + this.printHand());
-        System.out.println("    Hand value: " + Integer.toString(this.handValue()));
     }
         
     //calculate numerical value of a hand
