@@ -5,21 +5,24 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class dbMethods {
+    //database details
     String database = "jdbc:mariadb://192.168.1.3:3306/dmurray_blackjack_players";
     String user = "murrayd";
     String pass = "100528231";
     Statement stmt = null;
     
+    //constructor which creates connection to database
     public dbMethods() {
         try {
             Connection conn = DriverManager.getConnection(database, user, pass);
             stmt = conn.createStatement();
         }
         catch ( SQLException err ) {
-            System.out.println("ERROR: " +  err.getMessage( ) );
+            System.out.println("ERROR: " +  err.getMessage( ));
         }
     }
 
+    //checks if player name exists and database and returns their money if so
     public int getExistingPlayer(String name) {
         String query = "SELECT Username, Money FROM users";
         try {
@@ -38,6 +41,7 @@ public class dbMethods {
         return 0;
     }
 
+    //adds a new player to the database with a username and money value
     public void addPlayer(String name) {
         String query = "INSERT INTO users (Username, Money) VALUES ('"+name+"', 500)";
         try {
@@ -78,4 +82,5 @@ public class dbMethods {
             }
         }
     }
+
 }
