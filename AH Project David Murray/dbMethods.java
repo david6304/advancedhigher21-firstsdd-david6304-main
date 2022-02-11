@@ -83,4 +83,43 @@ public class dbMethods {
         }
     }
 
+    public void bubbleSort(Player[] arr) {
+        int length = arr.length;
+        boolean swapped = true;
+        while (swapped && length >= 0) {
+            swapped = false;
+            for (int i = 0; i < length - 2; i++) {
+                if (arr[i].getMoney() > arr[i+1].getMoney()) {
+                    Player temp = new Player(arr[i].getName(), ((int)arr[i].getMoney()));
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
+                    swapped = true;
+                }
+            }
+            length -= 1;
+        }
+    }
+    
+    public void printMostMoney() {
+        String query = "SELECT Username, Money FROM users";
+        try {
+            ResultSet rs = stmt.executeQuery(query);
+            int size = 0;
+            if (rs != null) {
+                rs.last();   
+                size = rs.getRow(); 
+                rs.beforeFirst();
+            }
+            Player[] players = new Player[size];
+            while(rs.next()) {
+                int i = 0;
+                players[i] = new Player(rs.getString("Username"), rs.getInt("Money"));
+            }
+            bubbleSort(players);
+            System.out.println(players[0].getName()+ " has the most money with £" + players[0].getMoney());
+        }
+        catch (SQLException err) {
+            System.out.println("ERROR" + err.getMessage());
+        }
+    }
 }

@@ -76,7 +76,14 @@ public class BlackJack {
             }
             storePlayerData(p.getName(), (int)p.getMoney());
             fixBrokePlayers();
+            testMostMoney();
         }
+    }
+
+    public void testMostMoney() {
+        dbMethods db = new dbMethods();
+        db.printMostMoney();
+        db.closeStmt();
     }
 
     public void clearHandsBets() {
