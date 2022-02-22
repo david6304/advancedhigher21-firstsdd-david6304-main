@@ -9,18 +9,22 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
      * @throws InterruptedException
      */
     public UserInputGUI(BlackJack game) throws InterruptedException {
+        //calling the methods in order 
         initComponents(game);
         setVisible(true);
         setNoPlayers(game);
         setPlayerNames(game);
         placePlayerBets(game);
         game.startGame();
+        //set visible false so next jframe can be seen
         setVisible(false);
     }
     
+    //not an ideal solution but global variables that are used to get strings that are entered when buttons are pressed
     String input = "0";
     boolean buttonPressed = false;
 
+    //when a button is pressed the input variable is changed to the string in the above text field 
     @Override
     public void actionPerformed(ActionEvent e) {
         input = PlayerInputTextField.getText();
