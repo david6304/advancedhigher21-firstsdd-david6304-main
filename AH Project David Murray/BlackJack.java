@@ -6,6 +6,7 @@ public class BlackJack {
     private Player[] players;
     int playerNo = 0;
 
+    //sets players to a new array with a given size
     public void createPlayerArray(int size) {
         this.players = new Player[size]; 
     }
@@ -34,6 +35,7 @@ public class BlackJack {
         }
     }
 
+    //gives players with 0 money 100 money so they aren't in the database but unable to play
     public void fixBrokePlayers() {
         brokePlayers();
         dbMethods db = new dbMethods();

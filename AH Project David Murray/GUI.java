@@ -16,11 +16,11 @@ public class GUI extends javax.swing.JFrame {
             game.findOutcome();
             setVisible(false);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
+    //sets the value of the components of the frame before the dealer deals to any players
     public void initialDealFrame(BlackJack game) throws InterruptedException {
         Thread.sleep(200);
         DealerCardImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(0).toString() + ".png")));
@@ -30,10 +30,14 @@ public class GUI extends javax.swing.JFrame {
         DealerHandValueLabel.setText("?");
     }
 
+    //plays round with each player in turn, changing the images and labels respectively
     public void playRoundsFrame(BlackJack game) throws InterruptedException {
         HitButton.addActionListener(HitButton);
         StandButton.addActionListener(StandButton);
+        //loop for each player playing 
         for (Player p : game.getPlayersArray()) {
+            //sets players card images using their current hand of two cards
+            //the thread.sleep is for timing issues
             PlayerCardImg1.setIcon(null);
             Thread.sleep(100);
             PlayerCardImg4.setIcon(null);
@@ -42,36 +46,51 @@ public class GUI extends javax.swing.JFrame {
             Thread.sleep(200);
             PlayerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(1).toString() + ".png")));
             Thread.sleep(200);
+
+            //setting values for labels from players properties
             PlayerNameLabelValue.setText(p.getName());
             PlayerMoneyLabelValue.setText(Long.toString(p.getMoney()));
             PlayerBetLabelValue.setText(Long.toString(p.getBet()));
             PlayerHandValueLabel.setText(Integer.toString(p.handValue()));
+
+            //loop while the player hasn't pressed stand and hasn't got a hand size >=4 and isn't bust
             while (!StandButton.isPressed() && p.getHand().size() < 4 && !p.isBust()) {
                 Thread.sleep(100);
+
+                //deals a card and update images a labels if hit is pressed and hand size = 2 
+                //the reason for the two conditional statements is so it knows which image to update
                 if (HitButton.isPressed() && p.getHand().size() == 2) {
                     game.dealer.Deal(game.pack, p);
                     PlayerCardImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(2).toString() + ".png")));
                     PlayerHandValueLabel.setText(Integer.toString(p.handValue()));
                     HitButton.setPressedFalse();
+                    
+                    //check if player is bust
                     if (p.handValue() > 21) {
                         p.setBust();
                     }
                 }
+
+                //same as above if statement but updates the player image 4 instead of player image 1
                 else if (HitButton.isPressed() && p.getHand().size() == 3) {
                     game.dealer.Deal(game.pack, p);
                     PlayerCardImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + p.getHand().get(3).toString() + ".png")));
                     PlayerHandValueLabel.setText(Integer.toString(p.handValue()));
                     HitButton.setPressedFalse();
+                    
+                    //checks if a player is bust
                     if (p.handValue() > 21) {
                         p.setBust();
                     }
                 }
             }
+            //resets stand button to false
             StandButton.setPressedFalse();
             Thread.sleep(200);
         }
     }    
 
+    //works similarly to above method but the dealer must hit when hand value < 17 and stand when >= 17
     public void DealerPlays(BlackJack game) throws InterruptedException {
         DealerCardImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/" + game.dealer.getHand().get(1).toString() + ".png")));
         Thread.sleep(500);
@@ -105,7 +124,9 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
+        //set background colour to dark green
         getContentPane().setBackground(Color.decode("#2e6716"));
+        //instanciate buttons and labels
         HitButton = new myJButton();
         StandButton = new myJButton();
         PlayerNameLabel = new javax.swing.JLabel();
@@ -130,22 +151,17 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        //give initial values to buttons and labels
         HitButton.setText("Hit");
-
         StandButton.setText("Stand");
-
         PlayerNameLabel.setText("Player Name: ");
-
         PlayerMoneyLabel.setText("Player Money: ");
-
         PlayerBetLabel.setText("Bet: ");
-
         PlayerHandLabel.setText("Hand Value: ");
-
         CardDeckImgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/red.png"))); // NOI18N
-
         DealerHandLabel.setText("Dealer Hand Value: ");
 
+        //auto generated code using netbeans gui designer
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

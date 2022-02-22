@@ -52,6 +52,7 @@ public class dbMethods {
         }
     }
 
+    //updates a users money after a round has ended
     public void updatePlayerData(String name, int money) {
         String query = "UPDATE users SET Money = " + money + " WHERE Username = \"" + name + "\"";
         try {
@@ -62,6 +63,7 @@ public class dbMethods {
         }
     }
 
+    //if a player in the database has 0 money then it gives them 100 so they aren't in the database and unable to play
     public void updateBrokePlayers() {
         String query = "UPDATE users SET Money = 100 WHERE Money = 0";
         try {
@@ -72,6 +74,7 @@ public class dbMethods {
         }
     }
 
+    //method to close the stmt
     public void closeStmt() {
         if (stmt!=null) {
             try {
@@ -83,13 +86,14 @@ public class dbMethods {
         }
     }
 
+    //bubble sort which sorts an array of player objects in descending order of money
     public void bubbleSort(Player[] arr) {
         int length = arr.length;
         boolean swapped = true;
         while (swapped && length >= 0) {
             swapped = false;
             for (int i = 0; i < length - 2; i++) {
-                if (arr[i].getMoney() > arr[i+1].getMoney()) {
+                if (arr[i].getMoney() < arr[i+1].getMoney()) {
                     Player temp = new Player(arr[i].getName(), ((int)arr[i].getMoney()));
                     arr[i] = arr[i+1];
                     arr[i+1] = temp;
@@ -100,26 +104,31 @@ public class dbMethods {
         }
     }
     
+    //gets all info from database and creates an array of player objects, which have a username and money, to be sorted
     public void printMostMoney() {
+        //two queries to stop grouping from the COUNT(*) affecting the first query
         String query = "SELECT Username, Money FROM users";
+        String countQuery = "SELECT COUNT(*) FROM users";
         try {
+            //two result sets to store both queries results
             ResultSet rs = stmt.executeQuery(query);
-            int size = 0;
-            if (rs != null) {
-                rs.last();   
-                size = rs.getRow(); 
-                rs.beforeFirst();
-            }
+            ResultSet rs2 = stmt.executeQuery(countQuery);
+            rs.first();
+            rs2.first();
+            //COUNT(*) is used to get number of rows in table so correctly sized player array can be made
+            int size = rs2.getInt("COUNT(*)");
+            System.out.println(size);
             Player[] players = new Player[size];
-            while(rs.next()) {
-                int i = 0;
+            //for loop to fill the array 
+            for (int i = 0; i < size; i++) {
                 players[i] = new Player(rs.getString("Username"), rs.getInt("Money"));
+                rs.next();
             }
             bubbleSort(players);
             System.out.println(players[0].getName()+ " has the most money with £" + players[0].getMoney());
         }
         catch (SQLException err) {
-            System.out.println("ERROR" + err.getMessage());
+            System.out.println("ERROR " + err.getMessage());
         }
     }
 }

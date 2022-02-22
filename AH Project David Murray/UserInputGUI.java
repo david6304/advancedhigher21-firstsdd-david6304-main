@@ -40,12 +40,14 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents(BlackJack game) {
+        //creates the initial jframe elements and background colour
         getContentPane().setBackground(Color.decode("#2e6716"));
         PlayerInputLabel = new javax.swing.JLabel();
         PlayerInputTextField = new javax.swing.JTextField();
         EnterButton = new javax.swing.JButton();
         EnterButton.addActionListener(this);
 
+        //auto generated code using netbeans gui designer
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         EnterButton.setText("Enter");
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,6 +82,7 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
     //get new input
     public void newInput() throws InterruptedException {
         while (true) {
+            //sleep is to fix timing issues
             Thread.sleep(100);
             if (buttonPressed) {
                 break;
@@ -131,6 +134,7 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
         db.closeStmt();
     }
 
+    //checks if a player in the game already has a name that another player enters
     public boolean checkDuplicateNames(BlackJack game) {
         for (Player p : game.getPlayersArray()) {
             if (p != null && input.equals(p.getName())) {
