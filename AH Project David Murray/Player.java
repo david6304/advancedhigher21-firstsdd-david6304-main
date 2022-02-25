@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Player {
+    //variable declaration 
     private ArrayList<Card> hand = new ArrayList<Card>();
     private long money;
     private int bet = -1;
@@ -9,14 +10,14 @@ public class Player {
     private boolean bust = false;
     private boolean win;
     private boolean draw = false;
-    //second hand in case player can split hands
-    //private ArrayList<Card> splitHand = new ArrayList<Card>();
 
+    //constructor
     public Player(String name, int money) {
         this.name = name;
         this.money = money;
     }
 
+    //returns a string output based on the value of win
     public String printWin() {
         if (this.win) {
             return " won";
@@ -26,6 +27,7 @@ public class Player {
         }
     }
 
+    //getters and setters
     public void setDraw(boolean b) {
         this.draw = b;
     }
@@ -58,10 +60,28 @@ public class Player {
         return this.money;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public void placeBet(int bet) {
+        this.bet = bet;
+    }
+
+    public void setMoney(long i) {
+        this.money = i;
+    }
+
+    public int getBet() {
+        return this.bet;
+    }
+
+    //adds a card to the players hand
     public void addToHand(Card c) {
         this.hand.add(c);
     }
 
+    //returns a string representation of the players hand
     public String printHand() {
         return Arrays.toString(this.hand.toArray());
     }
@@ -84,17 +104,7 @@ public class Player {
         return val;
     }
 
-    public void placeBet(int bet) {
-        this.bet = bet;
-    }
 
-    public void setMoney(long i) {
-        this.money = i;
-    }
-
-    public int getBet() {
-        return this.bet;
-    }
 
     //check if player is bust
     public boolean checkBust() {
@@ -110,10 +120,7 @@ public class Player {
         this.bet = 0;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
+    //changes the toString default method to return the players name
     @Override 
     public String toString() {
         return this.name;

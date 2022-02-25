@@ -16,6 +16,8 @@ public enum Rank {
     public final int value;
     //type is only needed to differentiate tens, jacks, queens and kings
     public final char type;
+
+    //constructor
     private Rank(int value, char type) {
         this.value = value;
         this.type = type;

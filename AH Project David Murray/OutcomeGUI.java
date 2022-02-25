@@ -14,6 +14,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
         game.clearHandsBets();
     }
 
+    //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
     public boolean playAgainCheck() throws InterruptedException {
         boolean playAgain = false;
         while (true) {
@@ -30,13 +31,19 @@ public class OutcomeGUI extends javax.swing.JFrame {
     }
 
 
+    //displays the outcome of the round for each player and their new amount of money
     public void displayOutcomes(BlackJack game) {
+        //2d array since each player has 3 labels
         javax.swing.JLabel[][] labelArr = {
             {player1NameLabel, player2NameLabel, player3NameLabel, player4NameLabel, player5NameLabel, player6NameLabel},
             {player1HandValue, player2HandValue, player3HandValue, player4HandValue, player5HandValue, player6HandValue},
             {player1Money, player2Money, player3Money, player4Money, player5Money, player6Money}
-        }; 
+        };
+
+        //int j used to increment from 0 to (number of players - 1) so all elements in the array can be accessed
         int j = 0;
+
+        //loop for each player in the game to set the outcomes text for the labels
         for (Player p : game.getPlayersArray()) {
             if (p.getDraw()) {
                 labelArr[0][j].setText(p.getName() + " drew");
@@ -60,7 +67,11 @@ public class OutcomeGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents(BlackJack game) {
+
+        //sets backgound colour to dark green
         getContentPane().setBackground(Color.decode("#2e6716"));
+
+        //instantiating the buttons and labels
         playAgainButton = new myJButton();
         dealerHandLabel = new javax.swing.JLabel();
         dealerHandValueLabel = new javax.swing.JLabel();
@@ -85,12 +96,14 @@ public class OutcomeGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        //setting text for some of the buttons and labels
         playAgainButton.setText("Play Again?");
 
         dealerHandLabel.setText("Dealer hand value: ");
 
         dealerHandValueLabel.setText(Integer.toString(game.dealer.handValue()));
 
+        //auto generated code using netbeans gui designer
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

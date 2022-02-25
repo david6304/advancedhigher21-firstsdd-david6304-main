@@ -6,6 +6,7 @@ public enum Suit {
 
     public final char value;
 
+    //constructor
     private Suit(char value) {
         this.value = value;
     }
