@@ -64,6 +64,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
 
         //sets background colour to dark green
         getContentPane().setBackground(Color.decode("#2e6716"));
+
         //instantiating the buttons and labels
         playAgainButton = new myJButton();
         dealerHandLabel = new javax.swing.JLabel();
