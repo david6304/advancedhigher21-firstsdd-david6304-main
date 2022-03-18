@@ -78,7 +78,6 @@ public class BlackJack {
             }
             storePlayerData(p.getName(), (int)p.getMoney());
             fixBrokePlayers();
-            testMostMoney();
         }
     }
 

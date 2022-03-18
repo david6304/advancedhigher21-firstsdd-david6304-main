@@ -117,7 +117,6 @@ public class dbMethods {
             rs2.first();
             //COUNT(*) is used to get number of rows in table so correctly sized player array can be made
             int size = rs2.getInt("COUNT(*)");
-            System.out.println(size);
             Player[] players = new Player[size];
             //for loop to fill the array 
             for (int i = 0; i < size; i++) {

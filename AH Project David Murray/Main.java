@@ -18,7 +18,7 @@ public class Main {
                             OutcomeGUI endGUI = new OutcomeGUI(game);
                             
                             //sets playAgain value based on what player clicks
-                            playAgain = endGUI.playAgainCheck();
+                            playAgain = endGUI.playAgainCheck(game);
                         }
                     }
                 } catch (InterruptedException e) {

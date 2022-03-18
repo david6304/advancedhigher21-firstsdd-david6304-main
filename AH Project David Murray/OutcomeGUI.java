@@ -10,17 +10,23 @@ public class OutcomeGUI extends javax.swing.JFrame {
         initComponents(game);
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
+        mostMoneyButton.addActionListener(mostMoneyButton);
         displayOutcomes(game);
         game.clearHandsBets();
     }
 
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
-    public boolean playAgainCheck() throws InterruptedException {
+    public boolean playAgainCheck(BlackJack game) throws InterruptedException {
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
             if (playAgainButton.isPressed()) {
                 playAgain = true;
+            }
+            //check if user wants to display richest player
+            if (mostMoneyButton.isPressed()) {
+                game.testMostMoney();
+                mostMoneyButton.setPressedFalse();
             }
             if (playAgain) {
                 setVisible(false);
@@ -29,6 +35,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
         }   
         return playAgain;
     }
+
 
 
     //displays the outcome of the round for each player and their new amount of money
@@ -73,6 +80,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
 
         //instantiating the buttons and labels
         playAgainButton = new myJButton();
+        mostMoneyButton = new myJButton();
         dealerHandLabel = new javax.swing.JLabel();
         dealerHandValueLabel = new javax.swing.JLabel();
         player3NameLabel = new javax.swing.JLabel();
@@ -98,6 +106,8 @@ public class OutcomeGUI extends javax.swing.JFrame {
 
         //setting text for some of the buttons and labels
         playAgainButton.setText("Play Again?");
+
+        mostMoneyButton.setText("Display richest player");
 
         dealerHandLabel.setText("Dealer hand value: ");
 
@@ -160,6 +170,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(260, 260, 260)
                         .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -194,8 +205,10 @@ public class OutcomeGUI extends javax.swing.JFrame {
                     .addComponent(player5Money, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(player6Money, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)))
         );
 
         pack();
@@ -206,6 +219,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dealerHandLabel;
     private javax.swing.JLabel dealerHandValueLabel;
     private myJButton playAgainButton;
+    private myJButton mostMoneyButton;
     private javax.swing.JLabel player1NameLabel;
     private javax.swing.JLabel player2NameLabel;
     private javax.swing.JLabel player3HandValue;
