@@ -92,7 +92,7 @@ public class dbMethods {
         boolean swapped = true;
         while (swapped && length >= 0) {
             swapped = false;
-            for (int i = 0; i < length - 2; i++) {
+            for (int i = 0; i < length - 1; i++) {
                 if (arr[i].getMoney() < arr[i+1].getMoney()) {
                     Player temp = new Player(arr[i].getName(), ((int)arr[i].getMoney()));
                     arr[i] = arr[i+1];

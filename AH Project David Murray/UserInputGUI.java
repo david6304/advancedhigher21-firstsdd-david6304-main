@@ -55,13 +55,13 @@ public class UserInputGUI extends javax.swing.JFrame implements ActionListener{
         layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
                 .createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup().addGap(280, 280, 280)
+                        .addGroup(layout.createSequentialGroup().addGap(175, 175, 175)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(PlayerInputTextField).addComponent(PlayerInputLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
+                                                370, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup().addGap(290, 290, 290).addComponent(EnterButton,
                                 javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(283, Short.MAX_VALUE)));
+                .addContainerGap(175, Short.MAX_VALUE)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(
