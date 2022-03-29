@@ -119,7 +119,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
         //set background colour to dark green
         getContentPane().setBackground(Color.decode("#2e6716"));
-        //instantiate buttons and labels
+        //instanciate buttons and labels
         HitButton = new myJButton();
         StandButton = new myJButton();
         PlayerNameLabel = new javax.swing.JLabel();
@@ -154,7 +154,7 @@ public class GUI extends javax.swing.JFrame {
         CardDeckImgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/red.png"))); // NOI18N
         DealerHandLabel.setText("Dealer Hand Value: ");
 
-        //auto generated code using NetBeans gui designer
+        //auto generated code using netbeans gui designer
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

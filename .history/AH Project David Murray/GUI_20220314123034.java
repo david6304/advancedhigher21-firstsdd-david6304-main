@@ -154,7 +154,7 @@ public class GUI extends javax.swing.JFrame {
         CardDeckImgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/png_96_dpi/red.png"))); // NOI18N
         DealerHandLabel.setText("Dealer Hand Value: ");
 
-        //auto generated code using NetBeans gui designer
+        //auto generated code using netbeans gui designer
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
