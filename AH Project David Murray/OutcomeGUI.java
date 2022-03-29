@@ -12,7 +12,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);
         displayOutcomes(game);
-        game.clearHandsBets();
+        //game.clearHandsBets();
     }
 
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
@@ -168,10 +168,10 @@ public class OutcomeGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(player6Money, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
+                        .addGap(100, 100, 100)
                         .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
