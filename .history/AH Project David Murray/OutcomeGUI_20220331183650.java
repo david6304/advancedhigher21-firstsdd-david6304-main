@@ -7,12 +7,9 @@ public class OutcomeGUI extends javax.swing.JFrame {
      * @throws InterruptedException
      */
     public OutcomeGUI(BlackJack game) throws InterruptedException {
+
+
         initComponents(game);
-        Player p = new Player("D", 500);
-        game.createPlayerArray(1);
-        game.getPlayersArray()[0] = p;
-        p.setWin(true);
-        p.addToHand(new Card(Suit.Hearts, Rank.Ace));
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);

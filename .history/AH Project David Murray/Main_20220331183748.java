@@ -3,10 +3,8 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            BlackJack game = new BlackJack();
-            OutcomeGUI og = new OutcomeGUI(game);
-            boolean b = og.playAgainCheck(game);
-            System.out.println(b);
+            OutcomeGUI og = new OutcomeGUI(new BlackJack());
+            boolean b = og.playAgainCheck(game)
         } catch (Exception e) {}
     
         //create playAgain boolean so game continues while player wants to play again

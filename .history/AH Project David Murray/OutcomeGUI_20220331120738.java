@@ -7,17 +7,38 @@ public class OutcomeGUI extends javax.swing.JFrame {
      * @throws InterruptedException
      */
     public OutcomeGUI(BlackJack game) throws InterruptedException {
-        initComponents(game);
+
+        Card c = new Card(Suit.Hearts, Rank.Ten);
+        Card a = new Card(Suit.Hearts, Rank.Ace);
+        Card c2 = new Card(Suit.Hearts, Rank.Eight);
+        Card c3 = new Card(Suit.Hearts, Rank.Seven);
+        game.dealer.addToHand(c);
+        game.dealer.addToHand(c);
         Player p = new Player("D", 500);
-        game.createPlayerArray(1);
+        Player p2 = new Player("M", 1000);
+        Player p3 = new Player("A", 550);
+        p.setWin(false);
+        p.addToHand(c);
+        p.addToHand(c2);
+        p.addToHand(c3);
+        p2.setWin(true);
+        p2.addToHand(c);
+        p2.addToHand(a);
+        p3.setDraw(true);
+        p3.addToHand(c);
+        p3.addToHand(c2);
+        game.createPlayerArray(3);
         game.getPlayersArray()[0] = p;
-        p.setWin(true);
-        p.addToHand(new Card(Suit.Hearts, Rank.Ace));
+        game.getPlayersArray()[1] = p2;
+        game.getPlayersArray()[2] = p3;
+        
+        initComponents(game);
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);
         displayOutcomes(game);
-        game.clearHandsBets();
+
+        //game.clearHandsBets();
     }
 
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible

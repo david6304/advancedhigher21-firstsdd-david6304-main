@@ -5,7 +5,9 @@ public class Main {
         try {
             BlackJack game = new BlackJack();
             OutcomeGUI og = new OutcomeGUI(game);
+            
             boolean b = og.playAgainCheck(game);
+            Thread.sleep(100);
             System.out.println(b);
         } catch (Exception e) {}
     

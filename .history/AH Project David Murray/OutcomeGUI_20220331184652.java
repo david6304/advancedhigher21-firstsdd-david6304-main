@@ -25,6 +25,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
+            System.out.println(playAgainButton.isPressed());
             if (playAgainButton.isPressed()) {
                 playAgain = true;
             }

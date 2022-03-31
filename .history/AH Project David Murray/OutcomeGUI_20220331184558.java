@@ -10,9 +10,6 @@ public class OutcomeGUI extends javax.swing.JFrame {
         initComponents(game);
         Player p = new Player("D", 500);
         game.createPlayerArray(1);
-        game.getPlayersArray()[0] = p;
-        p.setWin(true);
-        p.addToHand(new Card(Suit.Hearts, Rank.Ace));
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);
@@ -25,7 +22,9 @@ public class OutcomeGUI extends javax.swing.JFrame {
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
+            System.out.println(playAgainButton.isPressed());
             if (playAgainButton.isPressed()) {
+                System.out.println("Play again pressed");
                 playAgain = true;
             }
             //check if user wants to display richest player
