@@ -1,7 +1,13 @@
+
 public class Main {
     public static void main(String[] args) {
+
+        try {
+            new OutcomeGUI(new BlackJack());
+        } catch (Exception e) {}
+    
         //create playAgain boolean so game continues while player wants to play again
-        boolean playAgain = true;
+        /* boolean playAgain = true;
         while (true) {
             if (playAgain) {
                 //set playAgain to false so it will only loop again if player clicks play again button to set playAgain to true
@@ -18,13 +24,13 @@ public class Main {
                             OutcomeGUI endGUI = new OutcomeGUI(game);
                             
                             //sets playAgain value based on what player clicks
-                            playAgain = endGUI.playAgainCheck();
+                            playAgain = endGUI.playAgainCheck(game);
                         }
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }    
-        }
+        } */
     }
 }
