@@ -168,8 +168,14 @@ public class OutcomeGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD
+                        .addGap(31, 31, 31)
+                        .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(94, Short.MAX_VALUE))
+=======
                         .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(100, Short.MAX_VALUE))
+>>>>>>> 14f71cc38b4bde87cff7fe6f64ae3c2881b97592
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
