@@ -15,8 +15,13 @@ public class OutcomeGUI extends javax.swing.JFrame {
         //game.clearHandsBets();
     }
 
+<<<<<<< HEAD
+    //waits for play again to be pressed and then breaks out of the loop and sets this JFrame to not visible
+    public boolean playAgainCheck() throws InterruptedException {
+=======
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
     public boolean playAgainCheck(BlackJack game) throws InterruptedException {
+>>>>>>> 14f71cc38b4bde87cff7fe6f64ae3c2881b97592
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
