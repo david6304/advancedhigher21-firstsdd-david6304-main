@@ -6,7 +6,6 @@ public class Main {
             BlackJack game = new BlackJack();
             OutcomeGUI og = new OutcomeGUI(game);
             boolean b = og.playAgainCheck(game);
-            System.out.println(b);
         } catch (Exception e) {}
     
         //create playAgain boolean so game continues while player wants to play again

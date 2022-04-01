@@ -5,7 +5,10 @@ public class Main {
         try {
             BlackJack game = new BlackJack();
             OutcomeGUI og = new OutcomeGUI(game);
+            System.out.println("After og");
             boolean b = og.playAgainCheck(game);
+            System.out.println(b);
+            Thread.sleep(100);
             System.out.println(b);
         } catch (Exception e) {}
     

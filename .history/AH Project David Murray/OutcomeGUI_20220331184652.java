@@ -22,10 +22,10 @@ public class OutcomeGUI extends javax.swing.JFrame {
 
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
     public boolean playAgainCheck(BlackJack game) throws InterruptedException {
-
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
+            System.out.println(playAgainButton.isPressed());
             if (playAgainButton.isPressed()) {
                 playAgain = true;
             }
@@ -208,6 +208,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
                     .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)))
+        );
 
         pack();
     }// </editor-fold>                        

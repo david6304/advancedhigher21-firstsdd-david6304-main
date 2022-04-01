@@ -8,21 +8,20 @@ public class OutcomeGUI extends javax.swing.JFrame {
      */
     public OutcomeGUI(BlackJack game) throws InterruptedException {
         initComponents(game);
-        Player p = new Player("D", 500);
-        game.createPlayerArray(1);
-        game.getPlayersArray()[0] = p;
-        p.setWin(true);
-        p.addToHand(new Card(Suit.Hearts, Rank.Ace));
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);
         displayOutcomes(game);
-        game.clearHandsBets();
+        //game.clearHandsBets();
     }
 
+<<<<<<< HEAD
+    //waits for play again to be pressed and then breaks out of the loop and sets this JFrame to not visible
+    public boolean playAgainCheck() throws InterruptedException {
+=======
     //waits for play again to be pressed and then breaks out of the loop and sets this jframe to not visible
     public boolean playAgainCheck(BlackJack game) throws InterruptedException {
-
+>>>>>>> 14f71cc38b4bde87cff7fe6f64ae3c2881b97592
         boolean playAgain = false;
         while (true) {
             Thread.sleep(100);
@@ -208,6 +207,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
                     .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)))
+        );
 
         pack();
     }// </editor-fold>                        
@@ -236,5 +236,6 @@ public class OutcomeGUI extends javax.swing.JFrame {
     private javax.swing.JLabel player4NameLabel;
     private javax.swing.JLabel player5NameLabel;
     private javax.swing.JLabel player6NameLabel;
+    private myJButton mostMoneyButton;
     // End of variables declaration                   
 }
