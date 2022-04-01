@@ -8,11 +8,6 @@ public class OutcomeGUI extends javax.swing.JFrame {
      */
     public OutcomeGUI(BlackJack game) throws InterruptedException {
         initComponents(game);
-        Player p = new Player("D", 500);
-        game.createPlayerArray(1);
-        game.getPlayersArray()[0] = p;
-        p.setWin(true);
-        p.addToHand(new Card(Suit.Hearts, Rank.Ace));
         setVisible(true);
         playAgainButton.addActionListener(playAgainButton);
         mostMoneyButton.addActionListener(mostMoneyButton);
@@ -207,7 +202,7 @@ public class OutcomeGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mostMoneyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)))
+                .addGap(84, 84, 84))));
 
         pack();
     }// </editor-fold>                        
